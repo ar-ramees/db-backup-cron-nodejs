@@ -1,7 +1,7 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { exec } from 'child_process';
 import fs from 'fs';
-import * as path from 'path';
+// import * as path from 'path';
 import dotenv from 'dotenv';
 import { promisify } from 'util';
 

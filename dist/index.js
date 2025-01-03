@@ -8,7 +8,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const backupService_1 = require("./backupService");
 dotenv_1.default.config();
 const cronSchedule = process.env.CRON_SCHEDULE || '0 0 * * *';
-(0, backupService_1.backupToS3)().catch((error) => console.error('Scheduled backup failed:', error));
 node_cron_1.default.schedule(cronSchedule, async () => {
     console.log('Cron job triggered at:', new Date().toISOString());
     (0, backupService_1.backupToS3)().catch((error) => console.error('Scheduled backup failed:', error));

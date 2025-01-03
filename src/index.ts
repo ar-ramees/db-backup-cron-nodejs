@@ -1,5 +1,6 @@
 import cron from 'node-cron';
 import dotenv from 'dotenv';
+import { backupToS3 } from './backupService';
 
 dotenv.config();
 
@@ -9,7 +10,7 @@ console.log('Starting cron job for database backup.');
 
 cron.schedule(cronSchedule, async () => {
   console.log('Cron job triggered at:', new Date().toISOString());
-//   await uploadToS3();
+  backupToS3().catch((error) => console.error('Scheduled backup failed:', error));
 });
 
 console.log('Cron job scheduled.');

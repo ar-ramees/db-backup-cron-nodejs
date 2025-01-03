@@ -13,10 +13,12 @@
     "start:pm2": "pm2 start ecosystem.config.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.721.0",
     "@types/node": "^22.10.5",
     "aws-sdk": "^2.1692.0",
     "dotenv": "^16.4.7",
     "node-cron": "^3.0.3",
+    "path": "^0.12.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },

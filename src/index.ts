@@ -6,12 +6,11 @@ dotenv.config();
 
 const cronSchedule = process.env.CRON_SCHEDULE || '0 0 * * *';
 
-console.log('Starting cron job for database backup.');
-backupToS3().catch((error) => console.error('Scheduled backup failed:', error));
+// backupToS3().catch((error) => console.error('Scheduled backup failed:', error));
 
 cron.schedule(cronSchedule, async () => {
   console.log('Cron job triggered at:', new Date().toISOString());
-//   backupToS3().catch((error) => console.error('Scheduled backup failed:', error));
+  backupToS3().catch((error) => console.error('Scheduled backup failed:', error));
 });
 
 console.log('Cron job scheduled.');

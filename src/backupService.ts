@@ -40,20 +40,20 @@ const s3 = new S3Client({
 export const backupToS3 = async () => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const backupFileName = `backup-${timestamp}.sql.gz`;
-    const backupFilePath = path.join(__dirname, backupFileName);
+    // const backupFilePath = path.join(__dirname);
   
     try {
         // Step 1: Create a PostgreSQL backup using pg_dump
-        const command = `pg_dump -U ${PG_USER} -h ${PG_HOST} -p ${PG_PORT} ${PG_DB} | gzip > ${backupFilePath}`;
+        const command = `pg_dump -U ${PG_USER} -h ${PG_HOST} -p ${PG_PORT} ${PG_DB} | gzip > ${backupFileName}`;
         console.log('Creating database backup...');
         await execAsync(command);
-        console.log(`Backup created successfully: ${backupFilePath}`);
+        console.log(`Backup created successfully: ${backupFileName}`);
         
         // Step 2: Upload the backup to S3
-        const fileStream = fs.createReadStream(backupFilePath);
+        const fileStream = fs.createReadStream(backupFileName);
         const uploadParams = {
             Bucket: S3_BUCKET_NAME!,
-            Key: `backups/${backupFileName}`,
+            Key: `${backupFileName}`,
             Body: fileStream,
         };
       
@@ -63,7 +63,7 @@ export const backupToS3 = async () => {
         console.log('Backup uploaded to S3 successfully.');
       
         // Step 3: Clean up local backup file
-        fs.unlinkSync(backupFilePath);
+        fs.unlinkSync(backupFileName);
         console.log('Local backup file deleted.');
     } catch (error) {
         console.error('Error during backup or upload:', error);

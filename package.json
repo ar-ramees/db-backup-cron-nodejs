@@ -5,6 +5,13 @@
   "repository": "git@github.com:ar-ramees/db-backup-cron-nodejs.git",
   "author": "<ar.ramees.ar@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "watch": "tsc -w",
+    "dev": "nodemon dist/index.js",
+    "start:dev": "concurrently \"yarn watch\" \"yarn start\"",
+    "start:prod": "node dist/index.js",
+    "start:pm2": "pm2 start ecosystem.config.js"
+  },
   "dependencies": {
     "@types/node": "^22.10.5",
     "aws-sdk": "^2.1692.0",

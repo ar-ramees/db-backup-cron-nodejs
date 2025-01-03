@@ -1,0 +1,19 @@
+{
+  "name": "db-backup-cron-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ar-ramees/db-backup-cron-nodejs.git",
+  "author": "<ar.ramees.ar@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^22.10.5",
+    "aws-sdk": "^2.1692.0",
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11"
+  }
+}

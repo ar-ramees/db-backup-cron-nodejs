@@ -1,6 +1,6 @@
 module.exports = {
     apps : [{
-        name   : "AutoGenie-DB-Backup-CronJob",
+        name   : "DB-Backup-CronJob",
         script : "dist/index.js",
         exec_mode : "cluster",
         instances : 1,
